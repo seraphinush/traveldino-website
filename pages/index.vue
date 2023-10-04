@@ -1,5 +1,9 @@
 <template>
-  <div class="container" :class="currSlide < 4 && 'no-scroll'">
+  <div
+    class="container"
+    :class="currSlide < 4 && 'no-scroll'"
+    :style="currSlide < 4 && 'height: 100vh;'"
+  >
     <section class="index__scroll-slide-container bg-secondary">
       <div class="content">
         <div
@@ -90,8 +94,8 @@
 </template>
 <style scoped>
 .container {
-  height: 100vh;
   word-break: keep-all;
+  overflow-x: hidden;
 }
 
 .container h2,
@@ -103,6 +107,7 @@
   position: relative;
   height: 100vh;
   z-index: 0;
+  overscroll-behavior-y: contain;
 }
 
 .index__scroll-slide-container .content {
@@ -286,7 +291,6 @@ export default {
     };
   },
   methods: {
-    toggleScroll: () => {},
     handleScroll(e) {
       const totalSlides = this.totalSlides;
       if (window.scrollY > 0 && this.currSlide == totalSlides) return;
@@ -323,7 +327,7 @@ export default {
 
       const currentY = e.touches[0].clientY;
       if (currentY > this.touchStartY) {
-        if (this.currSlide > 0) {
+        if (this.currSlide > 1) {
           this.currSlide--;
         }
       } else if (currentY < this.touchStartY) {
@@ -339,11 +343,13 @@ export default {
     window.document.addEventListener("wheel", this.handleScroll);
     window.document.addEventListener("mousewheel", this.handleScroll);
     window.document.addEventListener("touchstart", this.handleTouchStart);
+    window.document.addEventListener("touchmove", this.handleTouchMove);
   },
   unmounted() {
     window.document.removeEventListener("wheel", this.handleScroll);
     window.document.removeEventListener("mousewheel", this.handleScroll);
     window.document.removeEventListener("touchstart", this.handleTouchStart);
+    window.document.removeEventListener("touchmove", this.handleTouchMove);
   },
 };
 </script>

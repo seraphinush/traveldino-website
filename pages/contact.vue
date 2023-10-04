@@ -6,7 +6,7 @@
           가장 나다운 여행을 떠날 수 있도록 다양한 프로젝트를 준비하고 있습니다
         </h2>
         <h4>
-          프래블다이노의 다음 프로젝트가 궁금하다면 언제든지 연락 주세요 :)
+          트래블다이노의 다음 프로젝트가 궁금하다면 언제든지 연락 주세요 :)
         </h4>
       </div>
     </section>
@@ -26,6 +26,7 @@
       <div class="content contact__members">
         <p class="bold">Traveldino Squad</p>
         <ContactProfiles />
+        <span class="spacer"></span>
       </div>
     </section>
 

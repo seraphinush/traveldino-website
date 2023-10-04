@@ -100,12 +100,16 @@ export default {
     let prevY = window.scrollY;
     window.addEventListener("scroll", () => {
       const currentY = window.scrollY;
-      if (currentY > prevY) {
-        header.style.opacity = "0";
-        header.style.zIndex = "0";
+      const screenWidth = window.innerWidth;
+      if (screenWidth < 720) {
       } else {
-        header.style.opacity = "1";
-        header.style.zIndex = "9999";
+        if (window.scrollY > 0 && currentY > prevY) {
+          header.style.opacity = "0";
+          header.style.zIndex = "0";
+        } else {
+          header.style.opacity = "1";
+          header.style.zIndex = "7001";
+        }
       }
       prevY = currentY;
     });

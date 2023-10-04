@@ -6,7 +6,7 @@
       <span class="burger"></span>
     </button>
     <nav>
-      <div class="backdrop"></div>
+      <!-- <div class="backdrop"></div> -->
       <div class="menu">
         <ul>
           <NuxtLink
@@ -27,8 +27,7 @@
 </template>
 <style scoped>
 button {
-  display: block;
-  height: 24px;
+  height: 25px;
   width: 32px;
   position: fixed;
   top: 17px;
@@ -97,6 +96,7 @@ nav {
   width: 80%;
   height: 100%;
   background-color: var(--clr-white);
+  box-shadow: 0 8px 10px hsla(0, 0%, 40%, 0.3);
   z-index: 8001;
 }
 

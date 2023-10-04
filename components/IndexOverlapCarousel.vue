@@ -56,16 +56,16 @@
 }
 
 .overlap-carousel-card {
+  position: absolute;
   display: flex;
   flex-direction: column;
-  transition: all 1000ms ease;
   border: 2px solid #ddd;
   border-radius: 2rem;
   overflow: hidden;
-  position: absolute;
   background-color: #f9f9f9;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
+  transition: all 1000ms ease;
 }
 
 .overlap-carousel-card > img {

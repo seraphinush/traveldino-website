@@ -163,5 +163,8 @@ export default {
   mounted() {
     this.startInterval();
   },
+  unmounted() {
+    clearInterval(this.slideInterval);
+  }
 };
 </script>
