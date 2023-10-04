@@ -253,5 +253,8 @@ export default {
       this.step();
     }, 5000);
   },
+  unmount() {
+    clearInterval(this.interval);
+  },
 };
 </script>
