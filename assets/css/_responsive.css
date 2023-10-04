@@ -1,0 +1,46 @@
+@media screen and (min-width: 0px) {
+  html {
+    font-size: 12px;
+  }
+  header {
+    width: calc(100% - 2rem);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .content {
+    position: relative;
+    width: calc(100% - 2rem);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (min-width: 720px) {
+  html {
+    font-size: 14px;
+  }
+  header,
+  .content {
+    width: calc(720px - 2rem);
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  html {
+    font-size: 16px;
+  }
+  header,
+  .content {
+    width: calc(1080px - 2rem);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  html {
+    font-size: 16px;
+  }
+  header,
+  .content {
+    width: 1080px;
+  }
+}

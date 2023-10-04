@@ -1,0 +1,58 @@
+@import "@/assets/css/_default.css";
+@import "@/assets/css/_variables.css";
+@import "@/assets/css/_utilities.css";
+@import "@/assets/css/_responsive.css";
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
+
+@font-face {
+  font-family: "KBODiaGothic";
+  src: url("/fonts/KBODiaGothicL.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "KBODiaGothic";
+  src: url("/fonts/KBODiaGothicM.ttf") format("truetype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "KBODiaGothic";
+  src: url("/fonts/KBODiaGothicB.ttf") format("truetype");
+  font-weight: 600;
+}
+
+html {
+  font-family: var(--font-face-default);
+  background-color: var(--clr-bg-primary);
+}
+
+.wrapper {
+  width: 100vw;
+  min-height: 100vh;
+  overscroll-behavior-y: contain;
+}
+
+h2 {
+  font-size: 2.5rem;
+  line-height: 3.5rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  line-height: 2.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  line-height: 2.25rem;
+  text-wrap: balance;
+}
+
+h2 > span,
+h3 > span,
+h4 > span {
+  font-size: inherit;
+  line-height: inherit;
+}

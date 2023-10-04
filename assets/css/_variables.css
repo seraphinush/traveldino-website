@@ -1,0 +1,17 @@
+:root {
+  --clr-white: #ffffff;
+  --clr-gray: hsla(0, 0%, 40%, 1);
+  --clr-gray-light: hsla(0, 0%, 75%, 1);
+  --clr-black: hsla(0, 0%, 10%, 1);
+  --clr-bg-primary: #f9f9f9;
+  --clr-bg-secondary: #f6f2ff;
+  --clr-bg-gray-light: #f4f4f4;
+  --clr-font: var(--clr-gray-light);
+  --clr-font-light: var(--clr-gray-light);
+  --clr-primary: #a67cff;
+  --clr-primary-light: #dac9ff;
+  --clr-secondary: #68e7b2;
+  --font-face-default: "Pretendard";
+  --font-face-emphasis: "KBODiaGothic";
+  --box-shadow-default: 0 4px 10px hsla(0, 0%, 40%, 1);
+}

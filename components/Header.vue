@@ -1,0 +1,114 @@
+<template>
+  <header class="content">
+    <NuxtLink to="/">
+      <img src="@/assets/logo.svg" alt="" />
+    </NuxtLink>
+    <ul>
+      <NuxtLink v-for="(link, index) in links" :key="index" :to="link.to">
+        <li :class="link.emphasis && 'emphasis'">{{ link.label }}</li>
+      </NuxtLink>
+      <a href="https://www.traveldino.app/" target="_blank">
+        <li class="emphasis">Try now!</li>
+      </a>
+    </ul>
+  </header>
+</template>
+<style scoped>
+header {
+  position: fixed;
+  margin-top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  transition: opacity 300ms;
+  opacity: 1;
+  z-index: 7000;
+}
+
+ul {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+ul * {
+  font-family: var(--font-face-emphasis);
+  font-size: 1rem;
+  word-break: keep-all;
+  white-space: nowrap;
+}
+
+.emphasis {
+  background: var(--clr-primary);
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+  color: var(--clr-white);
+}
+
+img {
+  height: 2rem;
+}
+
+@media screen and (min-width: 0px) {
+  ul {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 720px) {
+  ul {
+    display: flex;
+  }
+}
+</style>
+<script>
+export default {
+  data() {
+    return {
+      links: [
+        {
+          label: "Home",
+          to: "/",
+          emphasis: false,
+        },
+        {
+          label: "About",
+          to: "/about",
+          emphasis: false,
+        },
+        // {
+        //   label: "Stories",
+        //   to: "/stories",
+        //   emphasis: false,
+        // },
+        {
+          label: "Contact",
+          to: "/contact",
+          emphasis: false,
+        },
+        // {
+        //   label: "Try now!",
+        //   to: "/survey",
+        //   emphasis: true,
+        // },
+      ],
+    };
+  },
+  mounted() {
+    const header = window.document.querySelector("header");
+    let prevY = window.scrollY;
+    window.addEventListener("scroll", () => {
+      const currentY = window.scrollY;
+      if (currentY > prevY) {
+        header.style.opacity = "0";
+        header.style.zIndex = "0";
+      } else {
+        header.style.opacity = "1";
+        header.style.zIndex = "9999";
+      }
+      prevY = currentY;
+    });
+  },
+};
+</script>
