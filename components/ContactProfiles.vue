@@ -32,6 +32,7 @@
 }
 
 .contact__profile img {
+  background-color: var(--clr-white);
   border: 1px solid #000;
   border-radius: 100%;
 }

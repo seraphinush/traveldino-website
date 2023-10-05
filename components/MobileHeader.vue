@@ -30,8 +30,8 @@ button {
   height: 25px;
   width: 32px;
   position: fixed;
-  top: 17px;
-  right: 20px;
+  top: 1rem;
+  right: 1rem;
   z-index: 9000;
   display: flex;
   flex-direction: column;

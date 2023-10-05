@@ -1,29 +1,37 @@
 <template>
   <header class="content">
-    <NuxtLink to="/">
-      <img src="@/assets/logo.svg" alt="" />
-    </NuxtLink>
-    <ul>
-      <NuxtLink v-for="(link, index) in links" :key="index" :to="link.to">
-        <li :class="link.emphasis && 'emphasis'">{{ link.label }}</li>
+    <div class="inner content">
+      <NuxtLink to="/">
+        <img src="@/assets/logo.svg" alt="" />
       </NuxtLink>
-      <a href="https://www.traveldino.app/" target="_blank">
-        <li class="emphasis">Try now!</li>
-      </a>
-    </ul>
+      <ul>
+        <NuxtLink v-for="(link, index) in links" :key="index" :to="link.to">
+          <li :class="link.emphasis && 'emphasis'">{{ link.label }}</li>
+        </NuxtLink>
+        <a href="https://www.traveldino.app/" target="_blank">
+          <li class="emphasis">Try now!</li>
+        </a>
+      </ul>
+    </div>
   </header>
 </template>
 <style scoped>
 header {
   position: fixed;
-  margin-top: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: space-between;
-  transition: opacity 300ms;
+  width: 100%;
+  height: 4rem;
+  background: var(--clr-white);
+  transition: opacity 600ms;
   opacity: 1;
   z-index: 7000;
+}
+
+.inner {
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: inherit;
 }
 
 ul {
@@ -105,7 +113,6 @@ export default {
       } else {
         if (window.scrollY > 0 && currentY > prevY) {
           header.style.opacity = "0";
-          header.style.zIndex = "0";
         } else {
           header.style.opacity = "1";
           header.style.zIndex = "7001";

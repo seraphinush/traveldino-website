@@ -63,6 +63,7 @@
   border-radius: 2rem;
   overflow: hidden;
   background-color: #f9f9f9;
+  box-shadow: 0 4px 10px hsla(0, 0%, 60%, 0.5);
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
   transition: all 1000ms ease;
@@ -253,7 +254,7 @@ export default {
       this.step();
     }, 5000);
   },
-  unmount() {
+  unmounted() {
     clearInterval(this.interval);
   },
 };

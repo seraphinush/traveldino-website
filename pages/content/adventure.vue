@@ -296,8 +296,8 @@
 }
 </style>
 <script setup>
-const heroImageUrl = "/images/rest_main_banner.jpg";
-const heroTexts = ["드넓은 바다와", "함께하는", "느긋한 힐링"];
+const heroImageUrl = "/images/adventure_main_banner.jpg";
+const heroTexts = ["평범한 여행보단", "새로운 모험"];
 
 const prevLink = "/content/resort";
 const prevText = "여유로운 힐링이 가득한 여행지";

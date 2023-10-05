@@ -34,7 +34,7 @@
         <h3>&nbsp;</h3>
         <img src="/images/dino1.png" alt="" />
         <h3>&nbsp;</h3>
-        <h2 class="bold">We Are <span class="bold">TravelDino!</span></h2>
+        <h2 class="bolder">We Are <span class="bolder">TravelDino!</span></h2>
         <span class="spacer"></span>
         <about-image-slides></about-image-slides>
         <span class="spacer"></span>
