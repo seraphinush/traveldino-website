@@ -1,7 +1,7 @@
 <template>
   <a href="https://www.traveldino.app/" target="_blank">
     <div class="index__slide-button-container">
-      <img src="/images/dino_airplane.png" alt="" ref="draggableElement" />
+      <img src="/images/dino_airplane.png" alt="" ref="button" />
       <span class="placeholder"></span>
       <h3>{{ buttonText }}</h3>
     </div>

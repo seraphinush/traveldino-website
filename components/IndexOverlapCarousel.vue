@@ -59,7 +59,6 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  border: 2px solid #ddd;
   border-radius: 2rem;
   overflow: hidden;
   background-color: #f9f9f9;

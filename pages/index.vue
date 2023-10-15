@@ -2,7 +2,7 @@
   <div
     class="container"
     :class="currSlide < 4 && 'no-scroll'"
-    :style="currSlide < 4 && 'height: 100vh;'"
+    :style="currSlide < 4 && 'height: 100vh; overscroll-behavior: none;'"
   >
     <section class="index__scroll-slide-container bg-secondary">
       <div class="content">

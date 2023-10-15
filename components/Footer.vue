@@ -3,15 +3,15 @@
     <img src="@/assets/logo.svg" alt="" class="logo" />
     <div class="content links">
       <a
-        v-for="(item, index) in items"
+        v-for="(link, index) in links"
         :key="index"
-        :href="item.link"
+        :href="link.url"
         class="link"
       >
         <div class="icon">
-          <img :src="item.iconSrc" alt="" />
+          <img :src="link.iconSrc" alt="" />
         </div>
-        <p>{{ item.label }}</p>
+        <p>{{ link.label }}</p>
       </a>
     </div>
     <span>{{ copyright }}</span>
@@ -89,17 +89,7 @@ span {
 }
 </style>
 <script setup>
-const items = [
-  {
-    iconSrc: "/ico_email.svg",
-    label: "info.traveldino@gmail.com",
-    link: "mailto:info.traveldino@gmail.com",
-  },
-  {
-    iconSrc: "/ico_insta.svg",
-    label: "@traveldino.app",
-    link: "https://instagram.com/traveldino.app",
-  },
-];
-const copyright = "©TravelDino All Rights Reserved. 2023";
+import data from "~/assets/data/footer.json";
+const links = data.links;
+const copyright = data.copyright;
 </script>

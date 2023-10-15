@@ -61,7 +61,7 @@
   .about__image-slides > :nth-child(4n) {
     grid-column: 1;
   }
-  
+
   .about__image-slides > :nth-child(4n-2),
   .about__image-slides > :nth-child(4n-1) {
     grid-column: 2;
