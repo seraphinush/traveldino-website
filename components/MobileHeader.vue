@@ -226,11 +226,10 @@ ul * {
 }
 </style>
 <script setup>
-const button = ref(null);
 const links = [
   {
     label: "Home",
-    to: "/",
+    to: "/home",
     emphasis: false,
   },
   {
@@ -255,6 +254,7 @@ const links = [
   // },
 ];
 
+const button = ref(null);
 const toggle = () => {
   const el = button.value;
   const value = el.dataset.active;

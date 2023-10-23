@@ -1,7 +1,7 @@
 <template>
-  <header class="content">
+  <header class="content" ref="header">
     <div class="inner content">
-      <NuxtLink to="/">
+      <NuxtLink :to="logoLink">
         <img src="@/assets/logo.svg" alt="" />
       </NuxtLink>
       <ul>
@@ -70,56 +70,55 @@ img {
   }
 }
 </style>
-<script>
-export default {
-  data() {
-    return {
-      links: [
-        {
-          label: "Home",
-          to: "/",
-          emphasis: false,
-        },
-        {
-          label: "About",
-          to: "/about",
-          emphasis: false,
-        },
-        // {
-        //   label: "Stories",
-        //   to: "/stories",
-        //   emphasis: false,
-        // },
-        {
-          label: "Contact",
-          to: "/contact",
-          emphasis: false,
-        },
-        // {
-        //   label: "Try now!",
-        //   to: "/survey",
-        //   emphasis: true,
-        // },
-      ],
-    };
+<script setup>
+const logoLink = "/home";
+const links = [
+  {
+    label: "Home",
+    to: "/home",
+    emphasis: false,
   },
-  mounted() {
-    const header = window.document.querySelector("header");
-    let prevY = window.scrollY;
-    window.addEventListener("scroll", () => {
-      const currentY = window.scrollY;
-      const screenWidth = window.innerWidth;
-      if (screenWidth < 720) {
+  {
+    label: "About",
+    to: "/about",
+    emphasis: false,
+  },
+  // {
+  //   label: "Stories",
+  //   to: "/stories",
+  //   emphasis: false,
+  // },
+  {
+    label: "Contact",
+    to: "/contact",
+    emphasis: false,
+  },
+  // {
+  //   label: "Try now!",
+  //   to: "/survey",
+  //   emphasis: true,
+  // },
+];
+
+const header = ref(null);
+onMounted(() => {
+  const el = header.value;
+  if (!el) return;
+
+  let prevY = window.scrollY;
+  window.addEventListener("scroll", () => {
+    const currentY = window.scrollY;
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 720) {
+    } else {
+      if (window.scrollY > 0 && currentY > prevY) {
+        el.style.opacity = "0";
       } else {
-        if (window.scrollY > 0 && currentY > prevY) {
-          header.style.opacity = "0";
-        } else {
-          header.style.opacity = "1";
-          header.style.zIndex = "7001";
-        }
+        el.style.opacity = "1";
+        el.style.zIndex = "7001";
       }
-      prevY = currentY;
-    });
-  },
-};
+    }
+    prevY = currentY;
+  });
+});
 </script>

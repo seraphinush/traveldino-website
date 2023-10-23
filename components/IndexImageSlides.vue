@@ -2,7 +2,7 @@
   <div class="index-image-slide-container">
     <div class="index-image-slide content">
       <img
-        v-for="(source, index) in imageSources"
+        v-for="(source, index) in imgSources"
         :key="index"
         :src="source"
         :class="{
@@ -24,7 +24,7 @@
           'index-image-slide-three': index === 2,
           'index-image-slide-four': index === 3,
         }"
-        @click="changeSlide(index)"
+        @click="setSlideIndex(index)"
       >
         <h3 :class="index === currSlideIndex && 'text-active'">
           {{ caption }}
@@ -121,50 +121,39 @@
   }
 }
 </style>
-<script>
-export default {
-  data() {
-    return {
-      captions: [
-        "지구 끝에서 만나는 빙하, 파타고니아",
-        "영화 아바타의 배경지, 플리트비체",
-        "두 눈으로 직접 담는 화산 분화, 아카테낭고",
-        "아름다운 불교 유적 도시, 바간",
-      ],
-      slides: [],
-      images: [],
-      imageSources: [
-        "/images/main_sec3_bg1_patagonia.jpg",
-        "/images/main_sec3_bg2_plitvice.jpg",
-        "/images/main_sec3_bg3_acatenango.jpg",
-        "/images/main_sec3_bg4_bagan.jpg",
-      ],
-      currSlideIndex: 0,
-      currSlideText: null,
-      currSlideImage: null,
-      slideInterval: null,
-    };
-  },
-  methods: {
-    changeSlide(index) {
-      this.currSlideIndex = index;
-      this.startInterval();
-    },
-    startInterval() {
-      clearInterval(this.slideInterval);
-      this.slideInterval = setInterval(() => {
-        this.currSlideIndex++;
-        if (this.currSlideIndex > 3) {
-          this.currSlideIndex = 0;
-        }
-      }, 5000);
-    },
-  },
-  mounted() {
-    this.startInterval();
-  },
-  unmounted() {
-    clearInterval(this.slideInterval);
-  }
+<script setup>
+const captions = [
+  "지구 끝에서 만나는 빙하, 파타고니아",
+  "영화 아바타의 배경지, 플리트비체",
+  "두 눈으로 직접 담는 화산 분화, 아카테낭고",
+  "아름다운 불교 유적 도시, 바간",
+];
+const imgSources = [
+  "/images/main_sec3_bg1_patagonia.jpg",
+  "/images/main_sec3_bg2_plitvice.jpg",
+  "/images/main_sec3_bg3_acatenango.jpg",
+  "/images/main_sec3_bg4_bagan.jpg",
+];
+
+const currSlideIndex = ref(0);
+let interval = null;
+const startInterval = () => {
+  clearInterval(interval);
+  interval = setInterval(() => {
+    currSlideIndex.value = currSlideIndex.value++;
+    if (currSlideIndex > 3) {
+      currSlideIndex.value = 0;
+    }
+  });
 };
+const setSlideIndex = (i = 0) => {
+  currSlideIndex.value = i;
+  startInterval();
+};
+onMounted(() => {
+  startInterval();
+});
+onUnmounted(() => {
+  clearInterval(interval);
+});
 </script>
