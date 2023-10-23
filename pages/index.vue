@@ -40,6 +40,11 @@
           <img src="/images/dinoanimation3.png" alt="" />
         </div>
       </div>
+      <button v-if="currSlide < 4" class="arrow" @click="nextSlide">
+        <div class="arrow-inner" style="--i: 0; --j: 2"></div>
+        <div class="arrow-inner" style="--i: 1; --j: 1"></div>
+        <div class="arrow-inner" style="--i: 2; --j: 0"></div>
+      </button>
     </section>
     <section>
       <div class="index__section-two content">
@@ -277,6 +282,82 @@
     transform: translate(-5%, -20%);
   }
 }
+
+.arrow {
+  position: absolute;
+  bottom: calc(2vh + 38px);
+  left: 50%;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-animation: arrow 1.5s infinite;
+  animation: arrow 1.5s infinite;
+  width: 24px;
+  height: 24px;
+}
+
+.arrow-inner {
+  position: absolute;
+  transform: translate(calc(var(--i) * 7px), calc(var(--i) * -7px));
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  border-left: 1px solid var(--clr-primary);
+  border-bottom: 1px solid var(--clr-primary);
+  -webkit-animation: arrow-inner 1.5s infinite calc(var(--j) * 150ms);
+  animation: arrow-inner 1.5s infinite calc(var(--j) * 150ms);
+}
+
+@keyframes arrow {
+  0% {
+    -webkit-transform: rotate(-45deg) translate(0, 0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotate(-45deg) translate(-10px, 10px);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes arrow {
+  0% {
+    -webkit-transform: rotate(-45deg) translate(0, 0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotate(-45deg) translate(-10px, 10px);
+    opacity: 0;
+  }
+}
+
+@keyframes arrow-inner {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes arrow-inner {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 </style>
 <script>
 export default {
@@ -336,6 +417,12 @@ export default {
         }
       }
       this.scrollTimestamp = Date.now();
+    },
+    nextSlide() {
+      this.currSlide++;
+      if (this.currSlide > 4) {
+        this.currSlide == 4;
+      }
     },
   },
   mounted() {

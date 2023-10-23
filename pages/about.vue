@@ -20,7 +20,7 @@
     <section class="about__section-two">
       <div class="content">
         <span class="spacer"></span>
-        <h3>그동안 여러분의 모든 ‘떠남’은 어땠나요?</h3>
+        <h3>그동안 여러분의 모든 <span class="bolder">'떠남'</span>은 어땠나요?</h3>
         <h3>무엇을 기대하며 어떤 여행지를 선택했나요?</h3>
         <h3>&nbsp;</h3>
         <h3>
@@ -29,7 +29,7 @@
         <h3>&nbsp;</h3>
         <h3>
           만약 그렇다면 지금 트래블다이노에서
-          <span class="bold">가장 나다운 여행지</span>를 만나보세요!
+          <span class="bolder">가장 나다운 여행지</span>를 만나보세요!
         </h3>
         <h3>&nbsp;</h3>
         <img src="/images/dino1.png" alt="" />

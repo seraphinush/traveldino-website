@@ -1,6 +1,6 @@
 <template>
   <div class="mobile-header">
-    <button @click="toggle" ref="button" data-active="false">
+    <button @click="toggle" ref="button" data-active="null">
       <span class="burger"></span>
       <span class="burger"></span>
       <span class="burger"></span>
@@ -27,16 +27,18 @@
 </template>
 <style scoped>
 button {
-  height: 25px;
-  width: 32px;
+  margin: 2.5px 0px;
+  height: 20px;
+  width: 25px;
   position: fixed;
-  top: 1rem;
+  top: 0.9rem;
   right: 1rem;
   z-index: 9000;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: transform 300ms ease-in-out;
+  transform: scale(0.8);
 }
 
 .burger {
@@ -48,7 +50,6 @@ button {
 }
 
 .burger:nth-of-type(1) {
-  transform-origin: 0% 0%;
   transition: transform 300ms ease-in-out;
 }
 
@@ -57,16 +58,22 @@ button {
 }
 
 .burger:nth-of-type(3) {
-  transform-origin: 0% 100%;
   transition: transform 300ms ease-in-out;
 }
 
 button[data-active="true"] {
-  transform: translate(5px, 0);
+  margin: 0px 0px;
+  height: 25px;
+}
+
+button[data-active="false"] {
+  margin: 2.5px 0px;
+  height: 20px;
 }
 
 button[data-active="true"] .burger:nth-of-type(1) {
-  transform: rotate(45deg);
+  animation: burger-top-on 300ms forwards;
+  -webkit-animation: burger-top-on 300ms forwards;
 }
 
 button[data-active="true"] .burger:nth-of-type(2) {
@@ -74,7 +81,66 @@ button[data-active="true"] .burger:nth-of-type(2) {
 }
 
 button[data-active="true"] .burger:nth-of-type(3) {
-  transform: rotate(-45deg);
+  animation: burger-bottom-on 300ms forwards;
+  -webkit-animation: burger-bottom-on 300ms forwards;
+}
+
+button[data-active="false"] .burger:nth-of-type(1) {
+  animation: burger-top-off 300ms forwards;
+  -webkit-animation: burger-top-off 300ms forwards;
+}
+
+button[data-active="false"] .burger:nth-of-type(3) {
+  animation: burger-bottom-off 300ms forwards;
+  -webkit-animation: burger-bottom-off 300ms forwards;
+}
+
+@keyframes burger-top-on {
+  0% {
+    transform: none;
+  }
+  50% {
+    transform: translateY(12.5px);
+  }
+  100% {
+    transform: translateY(11.75px) rotate(45deg);
+  }
+}
+
+@keyframes burger-top-off {
+  0% {
+    transform: translateY(11.75px) rotate(45deg);
+  }
+  50% {
+    transform: translateY(12.5px);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes burger-bottom-on {
+  0% {
+    transform: none;
+  }
+  50% {
+    transform: translateY(-12.5px);
+  }
+  100% {
+    transform: translateY(-11px) rotate(-45deg);
+  }
+}
+
+@keyframes burger-bottom-off {
+  0% {
+    transform: translateY(-11px) rotate(-45deg);
+  }
+  50% {
+    transform: translateY(-12.5px);
+  }
+  100% {
+    transform: none;
+  }
 }
 
 nav {
@@ -87,6 +153,7 @@ nav {
   background: transparent;
   z-index: 8000;
   transition: all 300ms ease-in-out;
+  transform: translateX(100%);
 }
 
 .menu {
@@ -124,6 +191,10 @@ button[data-active="false"] ~ nav > .backdrop {
   backdrop-filter: blur(0px);
   opacity: 0;
   z-index: 0;
+}
+
+button[data-active="true"] ~ nav {
+  transform: translateX(0%);
 }
 
 ul {

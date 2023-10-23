@@ -310,7 +310,7 @@ const cardsA = [
     city: "카파도키아",
     country: "튀르키예",
     description:
-      "원추형 모양의 ‘요정의 굴뚝’과 암석을 깎아 만든 지하 도시 등 신비로운 지형",
+      "원추형 모양의 '요정의 굴뚝'과 암석을 깎아 만든 지하 도시 등 신비로운 지형",
     tags: ["요정의굴뚝", "지하도시", "세계복합유산"],
     imageUrl: "/images/adventure_img1_cappadocia.jpg",
   },
