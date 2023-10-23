@@ -22,6 +22,7 @@
           v-for="(card, index) in cardsA"
           :key="index"
           class="content__card"
+          :class="index % 2 === 0 ? 'fade-in-left' : 'fade-in-right'"
           :data-direction="index % 2 === 0 ? 'forward' : 'reverse'"
         >
           <img :src="card.imageUrl" alt="" />
@@ -48,6 +49,7 @@
           v-for="(card, index) in cardsB"
           :key="index"
           class="content__card"
+          :class="index % 2 === 0 ? 'fade-in-left' : 'fade-in-right'"
           :data-direction="index % 2 === 0 ? 'forward' : 'reverse'"
         >
           <img :src="card.imageUrl" alt="" />
@@ -141,6 +143,8 @@
 .content__card {
   display: flex;
   padding: 2rem 0;
+  transition: all 1500ms ease-out;
+  opacity: 1;
 }
 
 .content__card > img {
@@ -183,6 +187,16 @@
 
 .content__card-info .tag:not(:first-child) {
   margin-left: 0.25rem;
+}
+
+.fade-in-left {
+  transform: translateX(-15vw);
+  opacity: 0;
+}
+
+.fade-in-right {
+  transform: translateX(15vw);
+  opacity: 0;
 }
 
 .content__pagination {
@@ -357,4 +371,28 @@ const cardsB = [
     imageUrl: "/images/adventure_img6_israel.jpg",
   },
 ];
+
+const animOnScroll = () => {
+  const cards = window.document.querySelectorAll(
+    ".content__card.fade-in-left, .content__card.fade-in-right"
+  );
+  console.log(cards);
+  if (!cards.length) {
+    window.document.removeEventListener("scroll", animOnScroll);
+    return;
+  }
+  cards.forEach((card, index) => {
+    const bottom = Math.floor(window.innerHeight * 0.75);
+    if (bottom > card.getBoundingClientRect().y) {
+      card.classList.remove("fade-in-left");
+      card.classList.remove("fade-in-right");
+    }
+  });
+};
+onMounted(() => {
+  window.document.addEventListener("scroll", animOnScroll);
+});
+onUnmounted(() => {
+  window.document.removeEventListener("scroll", animOnScroll);
+});
 </script>
