@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="overlap-carousel-controller">
-      <span
+      <button
         v-for="(card, index) in cards"
         :key="index"
         :class="{
@@ -32,7 +32,7 @@
           active: index === currCard,
         }"
         @click="setCurrentCard(index)"
-      ></span>
+      ></button>
     </div>
   </div>
 </template>
@@ -265,8 +265,8 @@ export default {
     handleTouchMove(e) {
       clearInterval(this.interval);
       if (Date.now() - this.debounce < 200) return;
-      let dx = 8;
-      let dz = 10;
+      let dx = 4;
+      let dz = 5;
       const val = this.touchStartX - e.touches[0].clientX;
       if (val > 0) {
         // left
@@ -277,8 +277,6 @@ export default {
       } else if (val == 0) {
         return;
       }
-      // const limit = this.cards.length - 1 * 80;
-      console.log("----");
 
       const cardsEl = document.querySelectorAll(".overlap-carousel-card");
       cardsEl.forEach((card, index) => {
@@ -303,14 +301,11 @@ export default {
             z = currentZ + dz;
           }
         }
-        if (Math.abs(currentX - x) !== 8 || Math.abs(currentZ - z) !== 10) {
-          console.log("##########################");
-        }
-        if (z % 100 === 0) {
+
+        if (Math.abs(z) < 40) {
           this.setCardOrder(index);
         }
 
-        console.log(x, "and", z, card.style.zIndex);
         this.setTransformCard(card, x, y, z);
       });
       this.touchStartX = e.touches[0].clientX;
@@ -334,15 +329,19 @@ export default {
     this.interval = setInterval(() => {
       this.step();
     }, 5000);
-    window.document.addEventListener("touchstart", this.handleTouchStart);
-    window.document.addEventListener("touchmove", this.handleTouchMove);
-    window.document.addEventListener("touchend", this.handleTouchEnd);
+    const el = document.querySelector(".overlap-carousel-container");
+    if (!el) return;
+    el.addEventListener("touchstart", this.handleTouchStart);
+    el.addEventListener("touchmove", this.handleTouchMove);
+    el.addEventListener("touchend", this.handleTouchEnd);
   },
   unmounted() {
     clearInterval(this.interval);
-    window.document.removeEventListener("touchstart", this.handleTouchStart);
-    window.document.removeEventListener("touchmove", this.handleTouchMove);
-    window.document.removeEventListener("touchend", this.handleTouchEnd);
+    const el = document.querySelector(".overlap-carousel-container");
+    if (!el) return;
+    el.removeEventListener("touchstart", this.handleTouchStart);
+    el.removeEventListener("touchmove", this.handleTouchMove);
+    el.removeEventListener("touchend", this.handleTouchEnd);
   },
 };
 </script>
