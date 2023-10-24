@@ -376,13 +376,13 @@ const animOnScroll = () => {
   const cards = window.document.querySelectorAll(
     ".content__card.fade-in-left, .content__card.fade-in-right"
   );
-  console.log(cards);
   if (!cards.length) {
     window.document.removeEventListener("scroll", animOnScroll);
+    window.document.removeEventListener("touchmove", animOnScroll);
     return;
   }
   cards.forEach((card, index) => {
-    const bottom = Math.floor(window.innerHeight * 0.75);
+    const bottom = Math.floor(window.innerHeight * 0.80);
     if (bottom > card.getBoundingClientRect().y) {
       card.classList.remove("fade-in-left");
       card.classList.remove("fade-in-right");
@@ -391,8 +391,10 @@ const animOnScroll = () => {
 };
 onMounted(() => {
   window.document.addEventListener("scroll", animOnScroll);
+  window.document.addEventListener("touchmove", animOnScroll);
 });
 onUnmounted(() => {
   window.document.removeEventListener("scroll", animOnScroll);
+  window.document.removeEventListener("touchmove", animOnScroll);
 });
 </script>
