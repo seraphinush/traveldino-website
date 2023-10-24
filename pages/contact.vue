@@ -1,5 +1,5 @@
 <template>
-  <div class="contact__container">
+  <div class="container contact__container">
     <section>
       <div class="content contact__main">
         <h2 class="bold">

@@ -257,7 +257,9 @@ const links = [
 const button = ref(null);
 const toggle = () => {
   const el = button.value;
-  const value = el.dataset.active;
-  el.dataset.active = value == "true" ? "false" : "true";
+  const value = el.dataset.active == "true";
+  el.dataset.active = !value;
+
+  document.body.style = !value ? "overflow: hidden; height: 100vh" : "";
 };
 </script>
