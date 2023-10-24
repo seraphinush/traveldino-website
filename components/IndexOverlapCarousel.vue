@@ -52,7 +52,6 @@
   z-index: 0;
   justify-content: center;
   perspective: 1000px;
-  perspective-origin: 1000px 50%;
 }
 
 .overlap-carousel-card {
@@ -214,6 +213,7 @@ export default {
       ],
       currCard: 0,
       interval: null,
+      debounce: Date.now(),
     };
   },
   methods: {
@@ -225,17 +225,21 @@ export default {
     animateCard() {
       const cardsEl = document.querySelectorAll(".overlap-carousel-card");
       cardsEl.forEach((card, index) => {
-        const order =
-          this.currCard > index ? index - this.currCard : index - this.currCard;
+        const order = index - this.currCard;
         card.dataset.order = order;
-        const zIndex = 100 - Math.abs(order * 10);
-        card.style.zIndex = zIndex;
+        card.style.zIndex = Math.abs(order) * -1;
 
-        const dX = order * 80;
-        const dY = 0;
-        const dZ = Math.abs(order * 20) * -1;
-        card.style.transform = `translate3d(${dX}px, ${dY}px, ${dZ}px) rotateX(0deg) rotateY(0deg)`;
+        const x = order * 80;
+        const y = 0;
+        const z = Math.abs(order * 100) * -1;
+        this.setTransformCard(card, x, y, z);
       });
+    },
+    setTransformCard(card, x, y = 0, z) {
+      card.dataset.dx = x;
+      card.dataset.dy = y;
+      card.dataset.dz = z;
+      card.style.transform = `translate3d(${x}px, ${y}px, ${z}px) rotateX(0deg) rotateY(0deg)`;
     },
     setCurrentCard(index) {
       clearInterval(this.interval);
@@ -246,15 +250,99 @@ export default {
         this.step();
       }, 5000);
     },
+    setCardOrder(currCardIndex) {
+      this.currCard = currCardIndex;
+      const cardsEl = document.querySelectorAll(".overlap-carousel-card");
+      cardsEl.forEach((card, index) => {
+        const order = index - this.currCard;
+        card.dataset.order = order;
+        card.style.zIndex = Math.abs(order) * -1;
+      });
+    },
+    handleTouchStart(e) {
+      this.touchStartX = e.touches[0].clientX;
+    },
+    handleTouchMove(e) {
+      clearInterval(this.interval);
+      if (Date.now() - this.debounce < 200) return;
+      let dx = 8;
+      let dz = 10;
+      const val = this.touchStartX - e.touches[0].clientX;
+      if (val > 0) {
+        // left
+        dx *= -1;
+      } else if (val < 0) {
+        // right
+        dx *= 1;
+      } else if (val == 0) {
+        return;
+      }
+      // const limit = this.cards.length - 1 * 80;
+      console.log("----");
+
+      const cardsEl = document.querySelectorAll(".overlap-carousel-card");
+      cardsEl.forEach((card, index) => {
+        let x = 0;
+        let y = 0;
+        let z = 0;
+        const currentX = Number(card.dataset.dx);
+        const currentZ = Number(card.dataset.dz);
+
+        x = currentX + dx;
+
+        if (val > 0) {
+          if (x >= 0) {
+            z = currentZ + dz;
+          } else if (x < 0) {
+            z = currentZ - dz;
+          }
+        } else if (val < 0) {
+          if (x >= 0) {
+            z = currentZ - dz;
+          } else if (x < 0) {
+            z = currentZ + dz;
+          }
+        }
+        if (Math.abs(currentX - x) !== 8 || Math.abs(currentZ - z) !== 10) {
+          console.log("##########################");
+        }
+        if (z % 100 === 0) {
+          this.setCardOrder(index);
+        }
+
+        console.log(x, "and", z, card.style.zIndex);
+        this.setTransformCard(card, x, y, z);
+      });
+      this.touchStartX = e.touches[0].clientX;
+    },
+    handleTouchEnd(e) {
+      let cardIndex = 0;
+      let val = 9999;
+      const cardsEl = document.querySelectorAll(".overlap-carousel-card");
+      cardsEl.forEach((card, index) => {
+        const x = Math.abs(Number(card.dataset.dx));
+        if (x < val) {
+          val = x;
+          cardIndex = index;
+        }
+      });
+      this.setCurrentCard(cardIndex);
+    },
   },
   mounted() {
     this.step();
     this.interval = setInterval(() => {
       this.step();
     }, 5000);
+    window.document.addEventListener("touchstart", this.handleTouchStart);
+    window.document.addEventListener("touchmove", this.handleTouchMove);
+    window.document.addEventListener("touchend", this.handleTouchEnd);
   },
   unmounted() {
     clearInterval(this.interval);
+    window.document.removeEventListener("touchstart", this.handleTouchStart);
+    window.document.removeEventListener("touchmove", this.handleTouchMove);
+    window.document.removeEventListener("touchend", this.handleTouchEnd);
   },
 };
 </script>
