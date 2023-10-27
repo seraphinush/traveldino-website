@@ -6,6 +6,10 @@
   font-weight: 700;
 }
 
+.emphasis {
+  font-family: var(--font-face-emphasis);
+}
+
 .underline {
   text-decoration: underline;
 }

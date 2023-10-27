@@ -5,6 +5,7 @@
       <div class="content">
         <span class="spacer"></span>
         <span class="spacer"></span>
+        <span class="spacer"></span>
         <div class="content__hero_text">
           <h2 v-for="(text, index) in heroTexts" :key="index" class="bold">
             {{ text }}
@@ -12,12 +13,15 @@
         </div>
         <span class="spacer"></span>
         <span class="spacer"></span>
+        <span class="spacer"></span>
       </div>
     </section>
     <section class="content__section-two">
       <div class="content">
         <span class="spacer"></span>
-        <h3 class="bolder">수많은 리뷰들로 검증된 곳을 원한다면,</h3>
+        <h3 class="content__section-header bolder">
+          수많은 리뷰들로 검증된 곳을 원한다면,
+        </h3>
         <div
           v-for="(card, index) in cardsA"
           :key="index"
@@ -31,7 +35,13 @@
               <span class="city">{{ card.city }}</span>
               <span class="country">{{ card.country }}</span>
             </div>
-            <span class="description">{{ card.description }}</span>
+            <p
+              v-for="(x, index) in card.description"
+              :key="index"
+              class="description"
+            >
+              {{ x }}
+            </p>
             <div class="tags">
               <span v-for="(tag, index) in card.tags" :key="index" class="tag"
                 >#{{ tag }}</span
@@ -44,7 +54,9 @@
     <section class="content__section-two">
       <div class="content">
         <span class="spacer"></span>
-        <h3 class="bolder">아무도 안 가본 새로운 세상을 원한다면,</h3>
+        <h3 class="content__section-header bolder">
+          아무도 안 가본 새로운 세상을 원한다면,
+        </h3>
         <div
           v-for="(card, index) in cardsB"
           :key="index"
@@ -58,7 +70,13 @@
               <span class="city">{{ card.city }}</span>
               <span class="country">{{ card.country }}</span>
             </div>
-            <span class="description">{{ card.description }}</span>
+            <p
+              v-for="(x, index) in card.description"
+              :key="index"
+              class="description"
+            >
+              {{ x }}
+            </p>
             <div class="tags">
               <span v-for="(tag, index) in card.tags" :key="index" class="tag"
                 >#{{ tag }}</span
@@ -87,7 +105,7 @@
             <h4 class="bold">PREV</h4>
           </div>
 
-          <h4 class="bold">{{ prevText }}</h4>
+          <h4 class="emphasis bold">{{ prevText }}</h4>
         </NuxtLink>
         <NuxtLink :to="nextLink">
           <div class="button-content">
@@ -105,7 +123,7 @@
             </svg>
           </div>
 
-          <h4 class="bold">{{ nextText }}</h4>
+          <h4 class="emphasis bold">{{ nextText }}</h4>
         </NuxtLink>
       </div>
     </section>
@@ -124,7 +142,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  filter: brightness(80%);
+  filter: brightness(90%);
 }
 
 .content__hero .content__hero_text {
@@ -136,6 +154,7 @@
   width: fit-content;
   background-color: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
+  font-family: var(--font-face-emphasis);
   color: var(--clr-white);
   border-radius: 1.5rem;
 }
@@ -159,12 +178,13 @@
 }
 
 .content__card-info > *:not(:first-child) {
-  margin-top: 1rem;
+  margin-top: 0rem;
 }
 
 .content__card-title {
   display: flex;
   align-items: baseline;
+  margin-bottom: 1rem;
 }
 
 .content__card-title > .city {
@@ -177,11 +197,12 @@
   font-size: 1.5rem;
 }
 
-.content__card-info > .description {
+/* .content__card-info > .description {
   font-size: 1rem;
-}
+} */
 
 .content__card-info > .tags {
+  margin-top: 1rem;
   color: var(--clr-font-light);
 }
 
@@ -207,10 +228,6 @@
   display: flex;
   flex-direction: column;
   width: fit-content;
-}
-
-.content__pagination a > *:not(:first-child) {
-  margin-top: 0.25rem;
 }
 
 .content__pagination .button-content {
@@ -256,6 +273,11 @@
     width: 100%;
   }
 
+  .content__card-info > .description {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+
   .content__pagination > .content {
     display: flex;
     flex-direction: column;
@@ -294,6 +316,15 @@
     flex-direction: row;
     justify-content: space-between;
   }
+
+  .content__section-header {
+    font-size: 35px !important;
+  }
+
+  .content__card-info > .description {
+    font-size: 25px;
+    line-height: calc(25px + 0.5rem);
+  }
 }
 
 @media screen and (min-width: 1080px) {
@@ -323,22 +354,28 @@ const cardsA = [
   {
     city: "타이베이",
     country: "대만",
-    description: "먹거리, 볼거리, 즐길거리 가득한 활기차고 현대적인 수도",
+    description: ["먹거리, 볼거리, 즐길거리 가득한", "활기차고 현대적인 수도"],
     tags: ["야시장", "예류지질공원", "스펀"],
     imageUrl: "/images/city_img1_taipei.jpg",
   },
   {
     city: "바르셀로나",
     country: "스페인",
-    description:
-      "전설적인 모더니스트 건축가 안토니 가우디의 도시이자 스페인에서 두 번째로 큰 도시",
+    description: [
+      "전설적인 모더니스트 건축가",
+      "안토니 가우디의 도시이자",
+      "스페인에서 두 번째로 큰 도시",
+    ],
     tags: ["사그라다파밀리아", "구엘공원", "타파스"],
     imageUrl: "/images/city_img2_barcelona.jpg",
   },
   {
     city: "신트라",
     country: "포르투갈",
-    description: "이상한 나라의 앨리스가 떠오르는 리스본 근교의 신비한 도시",
+    description: [
+      "이상한 나라의 앨리스가 떠오르는",
+      "리스본 근교의 신비한 도시",
+    ],
     tags: ["세계문화유산", "페나성", "낭만주의건축"],
     imageUrl: "/images/city_img3_sintra.jpg",
   },
@@ -347,23 +384,33 @@ const cardsB = [
   {
     city: "케이프타운",
     country: "남아프리카공화국",
-    description:
-      "테이블 마운틴의 장관과 독특한 '케이프 더치' 양식의 건물, 푸르게 반짝이는 해변",
+    description: [
+      "테이블 마운틴의 장관과",
+      "독특한 '케이프 더치' 양식의 건물,",
+      "푸르게 반짝이는 해변",
+    ],
     tags: ["테이블마운틴", "희망봉", "볼더스비치"],
     imageUrl: "/images/city_img4_capetown.jpg",
   },
   {
     city: "메데인",
     country: "콜롬비아",
-    description:
-      "연중 온화한 날씨로 '영원한 봄'이라고도 불리는 콜롬비아 예술과 음식의 중심지",
+    description: [
+      "연중 온화한 날씨로",
+      "'영원한 봄'이라고도 불리는",
+      "콜롬비아 예술과 음식의 중심지",
+    ],
     tags: ["엘뻬뇰", "케이블카", "보테로"],
     imageUrl: "/images/city_img5_medellín.jpg",
   },
   {
     city: "시비우",
     country: "루마니아",
-    description: "중세 시대의 매력과 독특한 건축 양식을 가진 역사적인 유적지",
+    description: [
+      "중세 시대의 매력과",
+      "독특한 건축 양식을 가진",
+      "역사적인 유적지",
+    ],
     tags: ["트란실베니아", "바로크양식", "요새"],
     imageUrl: "/images/city_img6_sibiu.jpg",
   },
@@ -379,7 +426,7 @@ const animOnScroll = () => {
     return;
   }
   cards.forEach((card, index) => {
-    const bottom = Math.floor(window.innerHeight * 0.80);
+    const bottom = Math.floor(window.innerHeight * 0.8);
     if (bottom > card.getBoundingClientRect().y) {
       card.classList.remove("fade-in-left");
       card.classList.remove("fade-in-right");
@@ -389,6 +436,9 @@ const animOnScroll = () => {
 onMounted(() => {
   window.document.addEventListener("scroll", animOnScroll);
   window.document.addEventListener("touchmove", animOnScroll);
+  setTimeout(() => {
+    animOnScroll();
+  }, 1);
 });
 onUnmounted(() => {
   window.document.removeEventListener("scroll", animOnScroll);

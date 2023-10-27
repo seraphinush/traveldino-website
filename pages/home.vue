@@ -57,7 +57,7 @@
         <span class="spacer"></span>
       </div>
     </section>
-    <section class="bg-gray-light">
+    <section class="">
       <div class="index__section-three content">
         <span class="spacer"></span>
         <h2>세계를 여행한 다이노가 알려주는</h2>
@@ -73,7 +73,8 @@
     <section>
       <div class="index__section-four content">
         <span class="spacer"></span>
-        <h2>알고 있던 여행지의 <span class="bold">새로운</span> 모습 발견</h2>
+        <h2>알고 있던 여행지의</h2>
+        <h2><span class="bold">새로운</span> 모습 발견</h2>
         <h4>이미 알고 있던 나라가 나왔다고요?</h4>
         <h4>걱정 마세요, 이번엔 다를 테니까요!</h4>
         <span class="spacer"></span>
@@ -81,7 +82,7 @@
         <span class="spacer"></span>
       </div>
     </section>
-    <section class="bg-gray-light">
+    <section class="">
       <div class="index__section-five content">
         <span class="spacer"></span>
         <div class="index__section-five-grid">

@@ -153,17 +153,17 @@ nav {
   background: transparent;
   z-index: 8000;
   transition: all 300ms ease-in-out;
-  transform: translateX(100%);
+  transform: translateY(100%);
 }
 
 .menu {
   position: absolute;
   top: inherit;
   right: inherit;
-  width: 80%;
+  width: 100%;
   height: 100%;
   background-color: var(--clr-white);
-  box-shadow: 0 8px 10px hsla(0, 0%, 40%, 0.3);
+  box-shadow: 0 -8px 10px hsla(0, 0%, 40%, 0.3);
   z-index: 8001;
 }
 
@@ -182,7 +182,7 @@ nav {
 }
 
 button[data-active="false"] ~ nav {
-  transform: translateX(100%);
+  transform: translateY(100%);
 }
 
 button[data-active="false"] ~ nav > .backdrop {
@@ -194,7 +194,7 @@ button[data-active="false"] ~ nav > .backdrop {
 }
 
 button[data-active="true"] ~ nav {
-  transform: translateX(0%);
+  transform: translateY(10%);
 }
 
 ul {
@@ -207,7 +207,7 @@ ul {
 
 ul * {
   font-family: var(--font-face-emphasis);
-  font-size: 1rem;
+  font-size: 1.5rem;
   word-break: keep-all;
   white-space: nowrap;
 }

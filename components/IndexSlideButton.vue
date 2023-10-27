@@ -3,7 +3,7 @@
     <div class="index__slide-button-container">
       <img src="/images/dino_airplane.png" alt="" ref="button" />
       <span class="placeholder"></span>
-      <h3>{{ buttonText }}</h3>
+      <h3 class="bold">{{ buttonText }}</h3>
     </div>
   </a>
 </template>
@@ -16,7 +16,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 1.25rem 1.5rem 1.25rem 1.25rem;
   width: fit-content;
   height: fit-content;
   background-color: var(--clr-primary);
@@ -36,6 +36,17 @@ img {
   background-color: var(--clr-white);
   border-radius: 9999px;
   transform: rotate(-15deg);
+  box-shadow: var(--box-shadow-default);
+}
+
+@media screen and (min-width: 0px) {
+
+}
+
+@media screen and (min-width: 720px) {
+  h3 {
+    font-size: 40px;
+  }
 }
 </style>
 <script setup>

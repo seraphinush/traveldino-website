@@ -44,7 +44,7 @@
 .index-image-slide {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   padding: 0 2rem;
   position: relative;
   width: 100%;
@@ -59,7 +59,6 @@
   position: relative;
   font-family: var(--font-face-default);
   color: var(--clr-white);
-  opacity: 0.7;
   transition: all 300ms;
   z-index: 10;
   cursor: pointer;
@@ -103,11 +102,19 @@
 
 @media screen and (min-width: 0px) {
   .index-image-slide {
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 5 / 8;
   }
 
   .index-image-slide img {
     height: 100%;
+  }
+
+  .index-image-slide button:not(:first-child) {
+    margin-top: 0.5rem;
+  }
+
+  .index-image-slide button:not(:last-child) {
+    margin-bottom: 0.5rem;
   }
 }
 
@@ -118,6 +125,18 @@
 
   .index-image-slide img {
     height: auto;
+  }
+
+  .index-image-slide button > h3 {
+    font-size: 40px;
+  }
+
+  .index-image-slide button:not(:first-child) {
+    margin-top: 1rem;
+  }
+
+  .index-image-slide button:not(:last-child) {
+    margin-bottom: 1rem;
   }
 }
 </style>
@@ -136,15 +155,15 @@ const imgSources = [
 ];
 
 const currSlideIndex = ref(0);
-let interval = null;
+const interval = ref(null);
 const startInterval = () => {
-  clearInterval(interval);
-  interval = setInterval(() => {
-    currSlideIndex.value = currSlideIndex.value++;
-    if (currSlideIndex > 3) {
+  clearInterval(interval.value);
+  interval.value = setInterval(() => {
+    currSlideIndex.value = currSlideIndex.value + 1;
+    if (currSlideIndex.value > 3) {
       currSlideIndex.value = 0;
     }
-  });
+  }, 5000);
 };
 const setSlideIndex = (i = 0) => {
   currSlideIndex.value = i;
@@ -154,6 +173,6 @@ onMounted(() => {
   startInterval();
 });
 onUnmounted(() => {
-  clearInterval(interval);
+  clearInterval(interval.value);
 });
 </script>

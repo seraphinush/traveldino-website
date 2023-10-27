@@ -5,6 +5,7 @@
       <div class="content">
         <span class="spacer"></span>
         <span class="spacer"></span>
+        <span class="spacer"></span>
         <div class="content__hero_text">
           <h2 v-for="(text, index) in heroTexts" :key="index" class="bold">
             {{ text }}
@@ -12,12 +13,15 @@
         </div>
         <span class="spacer"></span>
         <span class="spacer"></span>
+        <span class="spacer"></span>
       </div>
     </section>
     <section class="content__section-two">
       <div class="content">
         <span class="spacer"></span>
-        <h3 class="bolder">수많은 리뷰들로 검증된 곳을 원한다면,</h3>
+        <h3 class="content__section-header bolder">
+          수많은 리뷰들로 검증된 곳을 원한다면,
+        </h3>
         <div
           v-for="(card, index) in cardsA"
           :key="index"
@@ -31,7 +35,13 @@
               <span class="city">{{ card.city }}</span>
               <span class="country">{{ card.country }}</span>
             </div>
-            <span class="description">{{ card.description }}</span>
+            <p
+              v-for="(x, index) in card.description"
+              :key="index"
+              class="description"
+            >
+              {{ x }}
+            </p>
             <div class="tags">
               <span v-for="(tag, index) in card.tags" :key="index" class="tag"
                 >#{{ tag }}</span
@@ -44,7 +54,9 @@
     <section class="content__section-two">
       <div class="content">
         <span class="spacer"></span>
-        <h3 class="bolder">아무도 안 가본 새로운 세상을 원한다면,</h3>
+        <h3 class="content__section-header bolder">
+          아무도 안 가본 새로운 세상을 원한다면,
+        </h3>
         <div
           v-for="(card, index) in cardsB"
           :key="index"
@@ -58,7 +70,13 @@
               <span class="city">{{ card.city }}</span>
               <span class="country">{{ card.country }}</span>
             </div>
-            <span class="description">{{ card.description }}</span>
+            <p
+              v-for="(x, index) in card.description"
+              :key="index"
+              class="description"
+            >
+              {{ x }}
+            </p>
             <div class="tags">
               <span v-for="(tag, index) in card.tags" :key="index" class="tag"
                 >#{{ tag }}</span
@@ -87,7 +105,7 @@
             <h4 class="bold">PREV</h4>
           </div>
 
-          <h4 class="bold">{{ prevText }}</h4>
+          <h4 class="emphasis bold">{{ prevText }}</h4>
         </NuxtLink>
         <NuxtLink :to="nextLink">
           <div class="button-content">
@@ -105,7 +123,7 @@
             </svg>
           </div>
 
-          <h4 class="bold">{{ nextText }}</h4>
+          <h4 class="emphasis bold">{{ nextText }}</h4>
         </NuxtLink>
       </div>
     </section>
@@ -124,7 +142,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  filter: brightness(80%);
+  filter: brightness(90%);
 }
 
 .content__hero .content__hero_text {
@@ -136,6 +154,7 @@
   width: fit-content;
   background-color: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
+  font-family: var(--font-face-emphasis);
   color: var(--clr-white);
   border-radius: 1.5rem;
 }
@@ -159,12 +178,13 @@
 }
 
 .content__card-info > *:not(:first-child) {
-  margin-top: 1rem;
+  margin-top: 0rem;
 }
 
 .content__card-title {
   display: flex;
   align-items: baseline;
+  margin-bottom: 1rem;
 }
 
 .content__card-title > .city {
@@ -177,11 +197,12 @@
   font-size: 1.5rem;
 }
 
-.content__card-info > .description {
+/* .content__card-info > .description {
   font-size: 1rem;
-}
+} */
 
 .content__card-info > .tags {
+  margin-top: 1rem;
   color: var(--clr-font-light);
 }
 
@@ -207,10 +228,6 @@
   display: flex;
   flex-direction: column;
   width: fit-content;
-}
-
-.content__pagination a > *:not(:first-child) {
-  margin-top: 0.25rem;
 }
 
 .content__pagination .button-content {
@@ -256,6 +273,11 @@
     width: 100%;
   }
 
+  .content__card-info > .description {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+
   .content__pagination > .content {
     display: flex;
     flex-direction: column;
@@ -294,6 +316,15 @@
     flex-direction: row;
     justify-content: space-between;
   }
+
+  .content__section-header {
+    font-size: 35px !important;
+  }
+
+  .content__card-info > .description {
+    font-size: 25px;
+    line-height: calc(25px + 0.5rem);
+  }
 }
 
 @media screen and (min-width: 1080px) {
@@ -323,24 +354,33 @@ const cardsA = [
   {
     city: "카파도키아",
     country: "튀르키예",
-    description:
-      "원추형 모양의 '요정의 굴뚝'과 암석을 깎아 만든 지하 도시 등 신비로운 지형",
+    description: [
+      "원추형 모양의 '요정의 굴뚝'과",
+      "암석을 깎아 만든 지하 도시 등",
+      "신비로운 지형",
+    ],
     tags: ["요정의굴뚝", "지하도시", "세계복합유산"],
     imageUrl: "/images/adventure_img1_cappadocia.jpg",
   },
   {
     city: "융프라우",
     country: "스위스",
-    description:
-      "해발 4,158m의 유럽의 지붕을 보면서 즐길 수 있는 산악 열차 투어와 트레킹",
+    description: [
+      "해발 4,158m의 유럽의 지붕을",
+      "보면서 즐길 수 있는",
+      "산악 열차 투어와 트레킹",
+    ],
     tags: ["인터라켄", "알프스", "만년설"],
     imageUrl: "/images/adventure_img2_jungfrau.jpg",
   },
   {
     city: "테를지",
     country: "몽골",
-    description:
-      "광활한 대지와 초원 그리고 사막이 모든 것을 한 번에 볼 수 있는 대자연의 집합체",
+    description: [
+      "광활한 대지와 초원 그리고 사막이",
+      "모든 것을 한 번에 볼 수 있는",
+      "대자연의 집합체",
+    ],
     tags: ["게르", "고비사막", "오프로드"],
     imageUrl: "/images/adventure_img3_terelj.jpg",
   },
@@ -349,24 +389,33 @@ const cardsB = [
   {
     city: "메스티아",
     country: "조지아",
-    description:
-      "코카서스 산맥의 해발 1,500미터에 있는 조지아 북서부의 고지대 마을",
+    description: [
+      "코카서스 산맥의",
+      "해발 1,500미터에 있는",
+      "조지아 북서부의 고지대 마을",
+    ],
     tags: ["트레킹", "코룰디호수", "우쉬굴리"],
     imageUrl: "/images/adventure_img4_mestia.jpg",
   },
   {
     city: "몬테베르데",
     country: "코스타리카",
-    description:
-      "전 세계인들이 모여드는 생태주의자들의 천국이자 자연주의자들의 고향",
+    description: [
+      "전 세계인들이 모여드는",
+      "태주의자들의 천국이자",
+      "자연주의자들의 고향",
+    ],
     tags: ["열대우림", "생태관광명소", "에코투어리즘"],
     imageUrl: "/images/adventure_img5_monteverde.jpg",
   },
   {
     city: "이스라엘",
     country: "",
-    description:
-      "사해와 신비로운 사막, 유구한 역사를 가진 성지까지 자연과 역사적 명소가 융합된 곳",
+    description: [
+      "사해와 신비로운 사막,",
+      "유구한 역사를 가진 성지까지",
+      "자연과 역사적 명소가 융합된 곳",
+    ],
     tags: ["예루살렘", "텔아비브", "성지순례"],
     imageUrl: "/images/adventure_img6_israel.jpg",
   },
@@ -382,7 +431,7 @@ const animOnScroll = () => {
     return;
   }
   cards.forEach((card, index) => {
-    const bottom = Math.floor(window.innerHeight * 0.80);
+    const bottom = Math.floor(window.innerHeight * 0.8);
     if (bottom > card.getBoundingClientRect().y) {
       card.classList.remove("fade-in-left");
       card.classList.remove("fade-in-right");
@@ -392,6 +441,9 @@ const animOnScroll = () => {
 onMounted(() => {
   window.document.addEventListener("scroll", animOnScroll);
   window.document.addEventListener("touchmove", animOnScroll);
+  setTimeout(() => {
+    animOnScroll();
+  }, 1);
 });
 onUnmounted(() => {
   window.document.removeEventListener("scroll", animOnScroll);
