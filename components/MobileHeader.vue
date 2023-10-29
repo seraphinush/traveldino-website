@@ -1,6 +1,6 @@
 <template>
   <div class="mobile-header">
-    <button @click="toggle" ref="button" data-active="null">
+    <button @click="toggle" ref="button" :data-active="useState('menuEnabled').value">
       <span class="burger"></span>
       <span class="burger"></span>
       <span class="burger"></span>
@@ -254,12 +254,11 @@ const links = [
   // },
 ];
 
+const menuToggle = useState("menuEnabled");
 const button = ref(null);
 const toggle = () => {
-  const el = button.value;
-  const value = el.dataset.active == "true";
-  el.dataset.active = !value;
-
+  menuToggle.value = !menuToggle.value;
+  const value = menuToggle.value;
   document.body.style = !value ? "overflow: hidden; height: 100vh" : "";
 };
 </script>

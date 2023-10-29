@@ -1,7 +1,7 @@
 <template>
   <header class="content" ref="header">
     <div class="inner content">
-      <NuxtLink :to="logoLink">
+      <NuxtLink :to="logoLink" @click="closeMobileMenu">
         <img src="@/assets/logo.svg" alt="" />
       </NuxtLink>
       <ul>
@@ -100,6 +100,7 @@ const links = [
   // },
 ];
 
+const menuToggle = useState("menuEnabled");
 const header = ref(null);
 onMounted(() => {
   const el = header.value;
@@ -121,4 +122,8 @@ onMounted(() => {
     prevY = currentY;
   });
 });
+
+const closeMobileMenu = () => {
+  menuToggle.value = false;
+};
 </script>
