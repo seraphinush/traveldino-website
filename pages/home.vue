@@ -174,7 +174,7 @@
 
 .index__section-two > h4 {
   margin-top: 2rem;
-  font-family: "Pretendard-Regular";
+  font-family: "Pretendard";
 }
 
 .index__section-three {
@@ -183,7 +183,7 @@
 
 .index__section-three > h4 {
   margin-top: 2rem;
-  font-family: "Pretendard-Regular";
+  font-family: "Pretendard";
 }
 
 .index__section-four {
@@ -192,7 +192,7 @@
 
 .index__section-four > h4:first-of-type {
   margin-top: 2rem;
-  font-family: "Pretendard-Regular";
+  font-family: "Pretendard";
 }
 
 .index__section-five-grid {
