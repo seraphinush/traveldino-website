@@ -162,7 +162,7 @@
 .content__card {
   display: flex;
   padding: 2rem 0;
-  transition: all 1500ms ease-out;
+  transition: all 900ms ease-out;
   opacity: 1;
 }
 
@@ -208,16 +208,6 @@
 
 .content__card-info .tag:not(:first-child) {
   margin-left: 0.25rem;
-}
-
-.fade-in-left {
-  transform: translateX(-15vw);
-  opacity: 0;
-}
-
-.fade-in-right {
-  transform: translateX(15vw);
-  opacity: 0;
 }
 
 .content__pagination {
@@ -286,6 +276,16 @@
   .content__pagination a:nth-of-type(2) {
     align-self: flex-end;
   }
+
+  .fade-in-left {
+    transform: translateY(15vw);
+    opacity: 0;
+  }
+
+  .fade-in-right {
+    transform: translateY(15vw);
+    opacity: 0;
+  }
 }
 
 @media screen and (min-width: 720px) {
@@ -324,6 +324,16 @@
   .content__card-info > .description {
     font-size: 25px;
     line-height: calc(25px + 0.5rem);
+  }
+
+  .fade-in-left {
+    transform: translateX(-15vw);
+    opacity: 0;
+  }
+
+  .fade-in-right {
+    transform: translateX(15vw);
+    opacity: 0;
   }
 }
 
