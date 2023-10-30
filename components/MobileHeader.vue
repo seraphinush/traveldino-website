@@ -259,6 +259,6 @@ const button = ref(null);
 const toggle = () => {
   menuToggle.value = !menuToggle.value;
   const value = menuToggle.value;
-  document.body.style = !value ? "overflow: hidden; height: 100vh" : "";
+  document.body.style = value ? "overflow: hidden; height: 100vh" : "";
 };
 </script>
