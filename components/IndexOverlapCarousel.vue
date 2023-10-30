@@ -178,7 +178,7 @@ export default {
         {
           city: "체스키크룸로프",
           country: "체코",
-          description: ["마을 전체가 세계문화유산인", "헤미안의 고향"],
+          description: ["마을 전체가 세계문화유산인", "보헤미안의 고향"],
           tags: ["동유럽", "세계문화유산", "중세시대", "보헤미안"],
           image: "/images/main_sec4_img1.jpg",
         },
