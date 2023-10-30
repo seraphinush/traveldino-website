@@ -153,17 +153,17 @@ nav {
   background: transparent;
   z-index: 8000;
   transition: all 300ms ease-in-out;
-  transform: translateY(100%);
+  transform: translateX(100%);
 }
 
 .menu {
   position: absolute;
   top: inherit;
   right: inherit;
-  width: 100%;
+  width: 80%;
   height: 100%;
   background-color: var(--clr-white);
-  box-shadow: 0 -8px 10px hsla(0, 0%, 40%, 0.3);
+  box-shadow: 0 8px 10px hsla(0, 0%, 40%, 0.3);
   z-index: 8001;
 }
 
@@ -182,7 +182,7 @@ nav {
 }
 
 button[data-active="false"] ~ nav {
-  transform: translateY(100%);
+  transform: translateX(100%);
 }
 
 button[data-active="false"] ~ nav > .backdrop {
@@ -194,7 +194,7 @@ button[data-active="false"] ~ nav > .backdrop {
 }
 
 button[data-active="true"] ~ nav {
-  transform: translateY(10%);
+  transform: translateX(0%);
 }
 
 ul {
