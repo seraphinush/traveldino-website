@@ -5,8 +5,20 @@
         <img src="@/assets/logo.svg" alt="" />
       </NuxtLink>
       <ul>
-        <NuxtLink v-for="(link, index) in links" :key="index" :to="link.to">
-          <li :class="link.emphasis && 'emphasis'">{{ link.label }}</li>
+        <NuxtLink
+          v-for="(link, index) in links"
+          :key="index"
+          :to="link.to"
+          @click="setHeaderActiveMenuIndex(index)"
+        >
+          <li
+            :class="{
+              active: useState('headerActiveMenuIndex').value === index,
+              emphasis: link.emphasis === true,
+            }"
+          >
+            {{ link.label }}
+          </li>
         </NuxtLink>
         <a href="https://www.traveldino.app/" target="_blank">
           <li class="emphasis">Try now!</li>
@@ -49,9 +61,13 @@ ul * {
 
 .emphasis {
   background: var(--clr-primary);
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 1rem;
   color: var(--clr-white);
+}
+
+.active {
+  font-weight: 500;
 }
 
 img {
@@ -71,6 +87,7 @@ img {
 }
 </style>
 <script setup>
+import { setHeaderActiveMenuIndex } from "~/utils";
 const logoLink = "/home";
 const links = [
   {
@@ -100,7 +117,7 @@ const links = [
   // },
 ];
 
-const menuToggle = useState("menuEnabled");
+const mobileHeaderEnabled = useState("mobileHeaderEnabled");
 const header = ref(null);
 onMounted(() => {
   const el = header.value;
@@ -124,6 +141,6 @@ onMounted(() => {
 });
 
 const closeMobileMenu = () => {
-  menuToggle.value = false;
+  mobileHeaderEnabled.value = false;
 };
 </script>

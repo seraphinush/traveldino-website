@@ -1,6 +1,10 @@
 <template>
   <div class="mobile-header">
-    <button @click="toggle" ref="button" :data-active="useState('menuEnabled').value">
+    <button
+      @click="toggle"
+      ref="button"
+      :data-active="useState('mobileHeaderEnabled').value"
+    >
       <span class="burger"></span>
       <span class="burger"></span>
       <span class="burger"></span>
@@ -13,9 +17,16 @@
             v-for="(link, index) in links"
             :key="index"
             :to="link.to"
-            @click="toggle"
+            @click="toggle(), setHeaderActiveMenuIndex(index)"
           >
-            <li :class="link.emphasis && 'emphasis'">{{ link.label }}</li>
+            <li
+              :class="{
+                active: useState('headerActiveMenuIndex').value === index,
+                emphasis: link.emphasis === true,
+              }"
+            >
+              {{ link.label }}
+            </li>
           </NuxtLink>
           <a href="https://www.traveldino.app/" target="_blank">
             <li class="emphasis">Try now!</li>
@@ -214,9 +225,13 @@ ul * {
 
 .emphasis {
   background: var(--clr-primary);
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 1rem;
   color: var(--clr-white);
+}
+
+.active {
+  font-weight: 500;
 }
 
 @media screen and (min-width: 720px) {
@@ -226,6 +241,7 @@ ul * {
 }
 </style>
 <script setup>
+import { setHeaderActiveMenuIndex } from "~/utils";
 const links = [
   {
     label: "Home",
@@ -254,11 +270,11 @@ const links = [
   // },
 ];
 
-const menuToggle = useState("menuEnabled");
+const mobileHeaderEnabled = useState("mobileHeaderEnabled");
 const button = ref(null);
 const toggle = () => {
-  menuToggle.value = !menuToggle.value;
-  const value = menuToggle.value;
+  mobileHeaderEnabled.value = !mobileHeaderEnabled.value;
+  const value = mobileHeaderEnabled.value;
   document.body.style = value ? "overflow: hidden; height: 100vh" : "";
 };
 </script>

@@ -1,1 +1,5 @@
-export const useMenuEnabled = () => useState("menuEnabled", () => false);
+export const mobileHeaderEnabled = () =>
+  useState("mobileHeaderEnabled", () => false);
+
+export const headerActiveMenuIndex = () =>
+  useState("headerActiveMenuIndex", () => -1);
