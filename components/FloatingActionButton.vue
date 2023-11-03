@@ -1,7 +1,7 @@
 <template>
   <div class="container" ref="fab">
     <img src="/images/dinohand.png" alt="" />
-    <a href="https://www.traveldino.app/" target="_blank"
+    <a href="https://www.traveldino.app/" target="_blank" class="bolder"
       >내 취향 여행지 찾기</a
     >
   </div>
@@ -69,7 +69,7 @@ onMounted(() => {
     const screenHeight = window.innerHeight;
     const currentY = window.scrollY;
 
-    if ((index === 0)) {
+    if (index === 0) {
       if (currentY > Math.floor(screenHeight / 10) && currentY < 3300) {
         el.style.opacity = "1";
       } else {
