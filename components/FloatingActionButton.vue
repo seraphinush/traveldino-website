@@ -67,10 +67,11 @@ onMounted(() => {
 
   window.addEventListener("scroll", () => {
     const screenHeight = window.innerHeight;
+    const limitY = document.body.scrollHeight - screenHeight * 2;
     const currentY = window.scrollY;
 
     if (index === 0) {
-      if (currentY > Math.floor(screenHeight / 10) && currentY < 3300) {
+      if (currentY > Math.floor(screenHeight / 10) && currentY < limitY) {
         el.style.opacity = "1";
       } else {
         el.style.opacity = "0";

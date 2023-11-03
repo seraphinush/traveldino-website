@@ -88,11 +88,12 @@
 
 .overlap-carousel-card-title {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
+  margin-bottom: 2rem;
 }
 
 .overlap-carousel-card-title {
-  margin-bottom: 2rem;
 }
 
 .overlap-carousel-card-title > .city {
