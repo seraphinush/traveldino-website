@@ -128,7 +128,9 @@ const header = ref(null);
 onMounted(() => {
   const path = window.location.pathname;
   const index = pathIndexes[path];
-  setHeaderActiveMenuIndex(index);
+  if (!!index) {
+    setHeaderActiveMenuIndex(index);
+  }
 
   const el = header.value;
   if (!el) return;
