@@ -45,7 +45,7 @@ img {
 
 @media screen and (min-width: 720px) {
   h3 {
-    font-size: 40px;
+    font-size: 30px;
   }
 }
 </style>

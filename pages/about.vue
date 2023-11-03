@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container bg-secondary">
     <section class="about__hero">
       <img src="/images/about_main_banner.jpg" alt="" />
       <div class="content">

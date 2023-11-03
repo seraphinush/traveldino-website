@@ -16,7 +16,6 @@
 <style scoped>
 .contact__profiles {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
   font-family: var(--font-face-default);
@@ -24,7 +23,6 @@
 
 .contact__profile {
   display: flex;
-  width: 200px;
 }
 
 .contact__profile > *:not(:last-child) {
@@ -48,11 +46,26 @@
 }
 
 @media screen and (min-width: 0px) {
+  .contact__profiles {
+    flex-direction: column;
+  }
+  .contact__profile {
+    width: 100%;
+  }
   .contact__profile img {
     width: 50px;
     min-width: 50px;
     height: 50px;
     min-height: 50px;
+  }
+}
+
+@media screen and (min-width: calc(400px + 3rem)) {
+  .contact__profiles {
+    flex-direction: row;
+  }
+  .contact__profile {
+    width: 200px;
   }
 }
 
