@@ -86,7 +86,7 @@
   width: 100%;
   height: 100%;
   background: var(--clr-black);
-  opacity: 0.5;
+  opacity: 0.3;
   z-index: 2;
 }
 
@@ -120,11 +120,11 @@
 
 @media screen and (min-width: 720px) {
   .index-image-slide {
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 4 / 3;
   }
 
   .index-image-slide img {
-    height: auto;
+    /* height: auto; */
   }
 
   .index-image-slide button > h3 {
