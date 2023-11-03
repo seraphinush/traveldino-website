@@ -32,6 +32,7 @@
             <li class="emphasis">Try now!</li>
           </a>
         </ul>
+        <img src="/images/dinohand.png" alt="" />
       </div>
     </nav>
   </div>
@@ -104,6 +105,14 @@ button[data-active="false"] .burger:nth-of-type(1) {
 button[data-active="false"] .burger:nth-of-type(3) {
   animation: burger-bottom-off 300ms forwards;
   -webkit-animation: burger-bottom-off 300ms forwards;
+}
+
+img {
+  width: 6rem;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 5px);
 }
 
 @keyframes burger-top-on {
