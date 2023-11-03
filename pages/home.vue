@@ -96,6 +96,7 @@
       </div>
     </section>
     <Footer></Footer>
+    <FloatingActionButton></FloatingActionButton>
   </div>
 </template>
 <style scoped>

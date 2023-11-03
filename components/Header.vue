@@ -117,9 +117,19 @@ const links = [
   // },
 ];
 
+const pathIndexes = {
+  "/home": 0,
+  "/about": 1,
+  "/contact": 2,
+};
+
 const mobileHeaderEnabled = useState("mobileHeaderEnabled");
 const header = ref(null);
 onMounted(() => {
+  const path = window.location.pathname;
+  const index = pathIndexes[path];
+  setHeaderActiveMenuIndex(index);
+
   const el = header.value;
   if (!el) return;
 
