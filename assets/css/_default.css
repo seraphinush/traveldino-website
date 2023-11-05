@@ -7,7 +7,6 @@ html {
 
 html,
 body {
-  overscroll-behavior-y: contain;
 }
 
 *,
@@ -21,6 +20,7 @@ body {
   -webkit-box-sizing: inherit;
   -moz-box-sizing: inherit;
   box-sizing: inherit;
+  overscroll-behavior-y: none;
 }
 
 p,

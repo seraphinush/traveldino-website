@@ -65,6 +65,7 @@ onMounted(() => {
 
   const el = fab.value;
   if (!el) return;
+  el.style.opacity = "1";
 
   window.addEventListener("scroll", () => {
     const screenHeight = window.innerHeight;
@@ -77,8 +78,6 @@ onMounted(() => {
       } else {
         el.style.opacity = "0";
       }
-    } else {
-      el.style.opacity = "1";
     }
   });
 });
