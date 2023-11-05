@@ -1,51 +1,47 @@
 <template>
-  <div class="index-image-slide-container">
-    <div class="index-image-slide content">
+  <div id="index-image-slide">
+    <div class="index-image-slide__content content">
       <img
-        v-for="(source, index) in imgSources"
+        v-for="(source, index) in moSources"
         :key="index"
         :src="source"
-        :class="{
-          'index-image-slide-one': index === 0,
-          'index-image-slide-two': index === 1,
-          'index-image-slide-three': index === 2,
-          'index-image-slide-four': index === 3,
-          'image-active': index === currSlideIndex,
-        }"
+        :data-active="index === currSlideIndex"
+        class="index-image-slide__img"
+        :style="clientWidth >= 720 && 'display: none'"
+      />
+      <img
+        v-for="(source, index) in pcSources"
+        :key="index"
+        :src="source"
+        :data-active="index === currSlideIndex"
+        class="index-image-slide__img"
+        :style="clientWidth < 720 && 'display: none'"
       />
       <div class="dark-overlay"></div>
-      <span class="spacer"></span>
       <button
         v-for="(caption, index) in captions"
         :key="index"
-        :class="{
-          'index-image-slide-one': index === 0,
-          'index-image-slide-two': index === 1,
-          'index-image-slide-three': index === 2,
-          'index-image-slide-four': index === 3,
-        }"
+        :data-active="index === currSlideIndex"
+        class="index-image-slide__btn"
         @click="setSlideIndex(index)"
       >
-        <h3 :class="index === currSlideIndex && 'text-active'">
-          {{ caption }}
-        </h3>
+        <h3>{{ caption }}</h3>
       </button>
-      <span class="spacer"></span>
     </div>
   </div>
 </template>
 <style scoped>
-.index-image-slide-container {
+#index-image-slide {
   padding: 0 2rem;
   position: relative;
   width: 100%;
   z-index: 0;
 }
-.index-image-slide {
+
+.index-image-slide__content {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 2rem;
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -55,28 +51,37 @@
   box-shadow: inset 0 4px 10px hsla(0, 0%, 40%, 1);
 }
 
-.index-image-slide button {
+.index-image-slide__img {
+  position: absolute;
+  transition: all 1000ms;
+  opacity: 0;
+  width: inherit;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.index-image-slide__img[data-active="true"] {
+  opacity: 1 !important;
+}
+
+.index-image-slide__btn {
   position: relative;
   font-family: var(--font-face-default);
   color: var(--clr-white);
   transition: all 300ms;
   z-index: 10;
   cursor: pointer;
-}
-
-.index-image-slide button > h3 {
   opacity: 0.7;
 }
 
-.index-image-slide img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: all 1000ms;
-  opacity: 0;
-  width: inherit;
-  object-fit: cover;
+.index-image-slide__btn[data-active="true"] {
+  opacity: 1 !important;
+}
+
+.index-image-slide__btn[data-active="true"] h3 {
+  font-weight: 700;
+  text-decoration: underline;
 }
 
 .dark-overlay {
@@ -90,52 +95,34 @@
   z-index: 2;
 }
 
-.text-active {
-  font-weight: 700;
-  text-decoration: underline;
-  opacity: 1 !important;
-}
-
-.image-active {
-  opacity: 1 !important;
-}
-
 @media screen and (min-width: 0px) {
-  .index-image-slide {
-    aspect-ratio: 5 / 8;
+  .index-image-slide__content {
+    aspect-ratio: 350 / 500;
   }
 
-  .index-image-slide img {
-    height: 100%;
-  }
-
-  .index-image-slide button:not(:first-child) {
+  .index-image-slide__btn:not(:first-child) {
     margin-top: 0.5rem;
   }
 
-  .index-image-slide button:not(:last-child) {
+  .index-image-slide__btn:not(:last-child) {
     margin-bottom: 0.5rem;
   }
 }
 
 @media screen and (min-width: 720px) {
-  .index-image-slide {
-    aspect-ratio: 4 / 3;
+  .index-image-slide__content {
+    aspect-ratio: 1195 / 830;
   }
 
-  .index-image-slide img {
-    /* height: auto; */
-  }
-
-  .index-image-slide button > h3 {
+  .index-image-slide__btn h3 {
     font-size: 40px;
   }
 
-  .index-image-slide button:not(:first-child) {
+  .index-image-slide__btn:not(:first-child) {
     margin-top: 1rem;
   }
 
-  .index-image-slide button:not(:last-child) {
+  .index-image-slide__btn:not(:last-child) {
     margin-bottom: 1rem;
   }
 }
@@ -147,7 +134,13 @@ const captions = [
   "두 눈으로 직접 담는 화산 분화, 아카테낭고",
   "아름다운 불교 유적 도시, 바간",
 ];
-const imgSources = [
+const moSources = [
+  "/images/main_sec3_bg1_patagonia_mo.jpg",
+  "/images/main_sec3_bg2_plitvice_mo.jpg",
+  "/images/main_sec3_bg3_acatenango_mo.jpg",
+  "/images/main_sec3_bg4_bagan_mo.jpg",
+];
+const pcSources = [
   "/images/main_sec3_bg1_patagonia.jpg",
   "/images/main_sec3_bg2_plitvice.jpg",
   "/images/main_sec3_bg3_acatenango.jpg",
@@ -169,10 +162,19 @@ const setSlideIndex = (i = 0) => {
   currSlideIndex.value = i;
   startInterval();
 };
+
+const clientWidth = ref(0);
+const handleResize = (e) => {
+  clientWidth.value = window.innerWidth;
+  console.log(clientWidth.value)
+};
 onMounted(() => {
   startInterval();
+  clientWidth.value = window.innerWidth;
+  window.addEventListener("resize", handleResize);
 });
 onUnmounted(() => {
   clearInterval(interval.value);
+  window.removeEventListener("resize", handleResize);
 });
 </script>

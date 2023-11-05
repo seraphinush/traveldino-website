@@ -3,7 +3,7 @@
   --clr-gray: hsla(0, 0%, 40%, 1);
   --clr-gray-light: hsla(0, 0%, 75%, 1);
   --clr-black: hsla(0, 0%, 10%, 1);
-  --clr-bg-primary: #f9f9f9;
+  --clr-bg-primary: var(--clr-white);
   --clr-bg-secondary: #f6f2ff;
   --clr-bg-gray-light: #f4f4f4;
   --clr-font: var(--clr-gray-light);
