@@ -82,6 +82,33 @@
 }
 </style>
 <script setup>
-import data from "~/assets/data/contact.json";
-const profiles = data.profiles;
+const { REPOSITORY_PATH } = useRuntimeConfig().public;
+
+const profiles = [
+  {
+    label: "Hendrick Jin",
+    description: "세계 맥주 뿌시는 알파고",
+    imgSrc: `${REPOSITORY_PATH}images/profiles/dino_drink.png`,
+  },
+  {
+    label: "Skyy",
+    description: "전 세계 감튀를 먹어보러 여행다니는 마케터",
+    imgSrc: `${REPOSITORY_PATH}images/profiles/dino_food.png`,
+  },
+  {
+    label: "Jelly Jay",
+    description: "세계 명산 정복을 꿈꾸는 기획자",
+    imgSrc: `${REPOSITORY_PATH}images/profiles/dino_gym.png`,
+  },
+  {
+    label: "Seraph",
+    description: "여행하고 싶지만 집돌이인 웹앱 개발자",
+    imgSrc: `${REPOSITORY_PATH}images/profiles/dino_music.png`,
+  },
+  {
+    label: "Demian",
+    description: "전 세계인과 친구하고 싶은 글로벌 몽상가",
+    imgSrc: `${REPOSITORY_PATH}images/profiles/dino_fan.png`,
+  },
+];
 </script>

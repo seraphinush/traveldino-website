@@ -128,6 +128,8 @@
 }
 </style>
 <script setup>
+const { REPOSITORY_PATH } = useRuntimeConfig().public;
+
 const captions = [
   "지구 끝에서 만나는 빙하, 파타고니아",
   "영화 아바타의 배경지, 플리트비체",
@@ -135,16 +137,16 @@ const captions = [
   "아름다운 불교 유적 도시, 바간",
 ];
 const moSources = [
-  "/images/main_sec3_bg1_patagonia_mo.jpg",
-  "/images/main_sec3_bg2_plitvice_mo.jpg",
-  "/images/main_sec3_bg3_acatenango_mo.jpg",
-  "/images/main_sec3_bg4_bagan_mo.jpg",
+  `${REPOSITORY_PATH}images/main_sec3_bg1_patagonia_mo.jpg`,
+  `${REPOSITORY_PATH}images/main_sec3_bg2_plitvice_mo.jpg`,
+  `${REPOSITORY_PATH}images/main_sec3_bg3_acatenango_mo.jpg`,
+  `${REPOSITORY_PATH}images/main_sec3_bg4_bagan_mo.jpg`,
 ];
 const pcSources = [
-  "/images/main_sec3_bg1_patagonia.jpg",
-  "/images/main_sec3_bg2_plitvice.jpg",
-  "/images/main_sec3_bg3_acatenango.jpg",
-  "/images/main_sec3_bg4_bagan.jpg",
+  `${REPOSITORY_PATH}images/main_sec3_bg1_patagonia.jpg`,
+  `${REPOSITORY_PATH}images/main_sec3_bg2_plitvice.jpg`,
+  `${REPOSITORY_PATH}images/main_sec3_bg3_acatenango.jpg`,
+  `${REPOSITORY_PATH}images/main_sec3_bg4_bagan.jpg`,
 ];
 
 const currSlideIndex = ref(0);
@@ -166,7 +168,6 @@ const setSlideIndex = (i = 0) => {
 const clientWidth = ref(0);
 const handleResize = (e) => {
   clientWidth.value = window.innerWidth;
-  console.log(clientWidth.value)
 };
 onMounted(() => {
   startInterval();

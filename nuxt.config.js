@@ -1,10 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
-    baseURL: process.env.BASE_URL || "/traveldino-website/",
-  },
-  router: {
-    base: process.env.BASE_URL || "/traveldino-website/",
+    baseURL: process.env.REPOSITORY_PATH || "/",
   },
   css: ["@/assets/css/main.css"],
+  runtimeConfig: {
+    public: {
+      ENVIRONMENT: process.env.REPOSITORY_PATH || "/",
+    },
+  },
 });
