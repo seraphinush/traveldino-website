@@ -3,5 +3,8 @@ export default defineNuxtConfig({
   app: {
     baseURL: process.env.BASE_URL || "/traveldino-website/",
   },
+  router: {
+    base: process.env.BASE_URL || "/traveldino-website/",
+  },
   css: ["@/assets/css/main.css"],
 });
