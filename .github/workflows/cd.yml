@@ -31,6 +31,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Create .env file
+        run: |
+          touch .env
+          echo REPOSITORY_PATH=${{ secrets.REPOSITORY_PATH }} >> .env
+          cat .env
       - name: Detect package manager
         id: detect-package-manager
         run: |
@@ -68,11 +73,6 @@ jobs:
           key: ${{ runner.os }}-nuxt-build-${{ hashFiles('dist') }}
           restore-keys: |
             ${{ runner.os }}-nuxt-build-
-      - name: Create .env file
-        run: |
-          touch .env
-          echo REPOSITORY_PATH=${{ secrets.REPOSITORY_PATH }} >> .env
-          cat .env
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Static HTML export with Nuxt
