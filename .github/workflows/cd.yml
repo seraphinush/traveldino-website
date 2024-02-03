@@ -34,7 +34,7 @@ jobs:
       - name: Create .env file
         run: |
           touch .env
-          echo REPOSITORY_PATH=${{ secrets.REPOSITORY_PATH }} >> .env
+          echo "REPOSITORY_PATH=${{ secrets.REPOSITORY_PATH }}" >> .env
           cat .env
       - name: Detect package manager
         id: detect-package-manager
