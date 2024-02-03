@@ -2,4 +2,6 @@
   <div class="container"></div>
 </template>
 <style scoped></style>
-<script setup></script>
+<script setup>
+navigateTo("/home");
+</script>
