@@ -24,9 +24,6 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
-env:
-  REPOSITORY_PATH: ${{ vars.REPOSITORY_PATH }}
-
 jobs:
   # Build job
   build:
@@ -36,8 +33,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Create .env file
         run: |
-          touch .env
-          echo "REPOSITORY_PATH=$REPOSITORY_PATH" >> .env
+          echo "${{ secrets.ENV_FILE }}" > .env
           cat .env
       - name: Detect package manager
         id: detect-package-manager
