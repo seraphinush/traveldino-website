@@ -25,7 +25,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  REPOSITORY_PATH: ${{ env.REPOSITORY_PATH }}
+  REPOSITORY_PATH: ${{ vars.REPOSITORY_PATH }}
 
 jobs:
   # Build job
